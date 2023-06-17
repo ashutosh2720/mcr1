@@ -5,11 +5,12 @@ import { books } from '../db/Books'
 
 const Search = () => {
     const [data, setData] = useState('')
-    function SearchData() {
+    function SearchData(e) {
         setData(e.target.value)
     }
+    console.log(books)
 
-    const filterdData = books ? books.filter((book) => book.title === data) : null
+    const filterdData = books.filter((book) => book.title.includes(data))
     const navigate = useNavigate();
     return (
         <div className='h-screen'>
