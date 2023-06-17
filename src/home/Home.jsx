@@ -17,12 +17,12 @@ const Home = () => {
             <button className="bg-cyan-300 p-3" onClick={() => navigate("/search")}>
                 search
             </button>
-            <div className="currently-reading flex justify-around   items-center h-80 w-full shadow-md">
+            <div className="currently-reading flex justify-around items-center min-h-[50%] w-full shadow-md">
                 <h1>currently reading</h1>
                 {allBooks
                     .filter((book) => book.category === "reading")
                     .map((book) => (
-                        <div className="book shadow-md rounded p-2">
+                        <div className="book shadow-md rounded p-10">
                             <img
                                 src={book.image}
                                 alt=""
