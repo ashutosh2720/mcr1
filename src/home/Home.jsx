@@ -1,11 +1,13 @@
 import React from "react";
 import { books } from "../db/Books";
+import { useNavigate } from "react-router-dom"
 
 const Home = () => {
-
+    const navigate = useNavigate();
 
     return (
         <div className="h-screeen w-full flex flex-col gap-2 ">
+            <button className="bg-cyan-300 p-3" onClick={() => navigate('/search')} >search</button>
             <div className="currently-reading flex justify-around   items-center h-80 w-full shadow-md">
                 <h1>currently reading</h1>
                 {books.map((book) =>
