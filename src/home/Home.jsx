@@ -1,5 +1,5 @@
 import React from "react";
-// import { books } from "../db/Books";
+import { books } from "../db/Books";
 
 const Home = () => {
 
@@ -14,6 +14,13 @@ const Home = () => {
                         <h1>Title: {book.title}</h1>
                         <h1>writer: {book.writer}</h1>
                         <h1>rating: {book.rating}</h1>
+                        move to
+                        <select name="" id="" className="border-2">
+                            <option value="">curently reading</option>
+                            <option value="">want to read</option>
+                            <option value="">Read</option>
+                            <option value="">none   </option>
+                        </select>
 
                     </div>) : '')}
             </div>
@@ -25,6 +32,13 @@ const Home = () => {
                         <h1>Title: {book.title}</h1>
                         <h1>writer: {book.writer}</h1>
                         <h1>rating: {book.rating}</h1>
+                        move to
+                        <select name="" id="" className="border-2">
+                            <option value="">curently reading</option>
+                            <option value="">want to read</option>
+                            <option value="">Read</option>
+                            <option value="">none   </option>
+                        </select>
                     </div>) : '')}
             </div>
             <div className="read h-80 w-full shadow-md flex justify-around   items-center">
@@ -35,6 +49,13 @@ const Home = () => {
                         <h1>Title: {book.title}</h1>
                         <h1>writer: {book.writer}</h1>
                         <h1>rating: {book.rating}</h1>
+                        move to
+                        <select name="" id="" className="border-2">
+                            <option value="">curently reading</option>
+                            <option value="">want to read</option>
+                            <option value="">Read</option>
+                            <option value="">none   </option>
+                        </select>
                     </div>) : '')}
             </div>
 
