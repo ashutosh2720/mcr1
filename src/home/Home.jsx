@@ -31,13 +31,14 @@ const Home = () => {
                             <h1>Title: {book.title}</h1>
                             <h1>writer: {book.writer}</h1>
                             <h1>rating: {book.rating}</h1>
-                            move to
+
                             <select
                                 onChange={(e) => changeCategory(e, book.id)}
                                 name=""
                                 id=""
                                 className="border-2"
                             >
+                                <option disabled='true' value=" ">Move To</option>
                                 <option value="reading">curently reading</option>
                                 <option value="wantsToRead">want to read</option>
                                 <option value="read">Read</option>
@@ -60,13 +61,14 @@ const Home = () => {
                             <h1>Title: {book.title}</h1>
                             <h1>writer: {book.writer}</h1>
                             <h1>rating: {book.rating}</h1>
-                            move to
+
                             <select
                                 onChange={(e) => changeCategory(e, book.id)}
                                 name=""
                                 id=""
                                 className="border-2"
                             >
+                                <option disabled='true' value=" ">Move To</option>
                                 <option value="reading">curently reading</option>
                                 <option value="wantsToRead">want to read</option>
                                 <option value="read">Read</option>
@@ -89,13 +91,14 @@ const Home = () => {
                             <h1>Title: {book.title}</h1>
                             <h1>writer: {book.writer}</h1>
                             <h1>rating: {book.rating}</h1>
-                            move to
+
                             <select
                                 onChange={(e) => changeCategory(e, book.id)}
                                 name=""
                                 id=""
                                 className="border-2"
                             >
+                                <option disabled='true' value=" ">Move To</option>
                                 <option value="reading">curently reading</option>
                                 <option value="wantsToRead">want to read</option>
                                 <option value="read">Read</option>
