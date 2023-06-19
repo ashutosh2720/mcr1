@@ -14,11 +14,12 @@ const Home = () => {
 
     return (
         <div className="h-screeen w-full flex flex-col gap-2 ">
-            <button className="bg-cyan-300 p-3" onClick={() => navigate("/search")}>
-                search
+            <button className="bg-cyan-300 p-3 text-xl" onClick={() => navigate("/search")}>
+                +
             </button>
             <div className="currently-reading flex justify-around items-center min-h-[50%] w-full shadow-md">
                 <h1>currently reading</h1>
+
                 {allBooks
                     .filter((book) => book.category === "reading")
                     .map((book) => (
@@ -106,7 +107,9 @@ const Home = () => {
                             </select>
                         </div>
                     ))}
+
             </div>
+
         </div>
     );
 };

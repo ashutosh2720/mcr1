@@ -5,8 +5,16 @@ import { books } from '../db/Books'
 
 const Search = () => {
     const [data, setData] = useState('')
+    const [allBooks, setAllBooks] = useState(books);
+
+
     function SearchData(e) {
         setData(e.target.value)
+    }
+    function changeCategory(e, id) {
+        setAllBooks(books.map((book) =>
+            book.id === id ? { ...books, category: e.target.value } : book
+        ))
     }
     console.log(books)
 
@@ -23,6 +31,19 @@ const Search = () => {
                         <h1>{item.title}</h1>
                         <h1>{item.writer}</h1>
                         <h1>{item.rating}</h1>
+
+                        <select
+                            onChange={(e) => changeCategory(e, book.id)}
+                            name=""
+                            id=""
+                            className="border-2"
+                        >
+                            <option disabled='true' value=" ">Move To</option>
+                            <option value="reading">curently reading</option>
+                            <option value="wantsToRead">want to read</option>
+                            <option value="read">Read</option>
+                            <option value="none">none </option>
+                        </select>
                     </div>
 
                 </div>
