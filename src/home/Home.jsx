@@ -1,115 +1,54 @@
-import React, { useState } from "react";
-import { books } from "../db/Books";
-import { useNavigate } from "react-router-dom";
+import BookCard from "../component/BookCard.jsx";
+import Plus from "../component/Plus.jsx";
+import { useGlobalBooks } from "../context/bookContext.jsx";
 
 const Home = () => {
-    const [allBooks, setAllBooks] = useState(books);
-
-    const navigate = useNavigate();
-    function changeCategory(e, id) {
-        setAllBooks(books.map((book) =>
-            book.id === id ? { ...books, category: e.target.value } : book
-        ))
-    }
+    const { books } = useGlobalBooks()
+    const reading = books.filter(book => book.category === 'reading')
+    const wantsToRead = books.filter(book => book.category === 'wantsToRead')
+    const read = books.filter(book => book.category === 'read')
 
     return (
-        <div className="h-screeen w-full flex flex-col gap-2 ">
-            <button className="bg-cyan-300 p-3 text-xl" onClick={() => navigate("/search")}>
-                +
-            </button>
-            <div className="currently-reading flex justify-around items-center min-h-[50%] w-full shadow-md">
-                <h1>currently reading</h1>
-
-                {allBooks
-                    .filter((book) => book.category === "reading")
-                    .map((book) => (
-                        <div className="book shadow-md rounded p-10">
-                            <img
-                                src={book.image}
-                                alt=""
-                                className="h-[200px] w-[200px]"
-                            />
-                            <h1>Title: {book.title}</h1>
-                            <h1>writer: {book.writer}</h1>
-                            <h1>rating: {book.rating}</h1>
-
-                            <select
-                                onChange={(e) => changeCategory(e, book.id)}
-                                name=""
-                                id=""
-                                className="border-2"
-                            >
-                                <option disabled='true' value=" ">Move To</option>
-                                <option value="reading">curently reading</option>
-                                <option value="wantsToRead">want to read</option>
-                                <option value="read">Read</option>
-                                <option value="none">none </option>
-                            </select>
-                        </div>
-                    ))}
-            </div>
-            <div className="want-to-read h-80 w-full  flex justify-around   items-center shadow-md">
-                <h1>want to read</h1>
-                {allBooks
-                    .filter((book) => book.category === "wantsToRead")
-                    .map((book) => (
-                        <div className="book shadow-md p-2">
-                            <img
-                                src={book.image}
-                                alt=""
-                                style={{ height: "200px", width: "200px" }}
-                            />
-                            <h1>Title: {book.title}</h1>
-                            <h1>writer: {book.writer}</h1>
-                            <h1>rating: {book.rating}</h1>
-
-                            <select
-                                onChange={(e) => changeCategory(e, book.id)}
-                                name=""
-                                id=""
-                                className="border-2"
-                            >
-                                <option disabled='true' value=" ">Move To</option>
-                                <option value="reading">curently reading</option>
-                                <option value="wantsToRead">want to read</option>
-                                <option value="read">Read</option>
-                                <option value="none">none </option>
-                            </select>
-                        </div>
-                    ))}
-            </div>
-            <div className="read h-80 w-full shadow-md flex justify-around   items-center">
-                <h1>read</h1>
-                {allBooks
-                    .filter((book) => book.category === "read")
-                    .map((book) => (
-                        <div className="book shadow-md p-2">
-                            <img
-                                src={book.image}
-                                alt=""
-                                style={{ height: "200px", width: "200px" }}
-                            />
-                            <h1>Title: {book.title}</h1>
-                            <h1>writer: {book.writer}</h1>
-                            <h1>rating: {book.rating}</h1>
-
-                            <select
-                                onChange={(e) => changeCategory(e, book.id)}
-                                name=""
-                                id=""
-                                className="border-2"
-                            >
-                                <option disabled='true' value=" ">Move To</option>
-                                <option value="reading">curently reading</option>
-                                <option value="wantsToRead">want to read</option>
-                                <option value="read">Read</option>
-                                <option value="none">none </option>
-                            </select>
-                        </div>
-                    ))}
-
+        <div className={'p-4 px-8 sm:px-10 md:px-30'}>
+            <div className={'currently-reading pt-2'}>
+                <h1 className={'text-2xl border-b-2 mb-4'}>Currently Reading</h1>
+                <div className={'flex gap-10 flex-wrap justify-around items-center'}>
+                    {
+                        reading.length ?
+                            reading.map(book => (
+                                <BookCard id={book.id} key={book.id} book={book} />
+                            )) :
+                            <p className={'text-black/40 text-2xl'}>Nothing</p>
+                    }
+                </div>
             </div>
 
+            <div className={'want-to-read pt-8'}>
+                <h1 className={'text-2xl border-b-2 mb-2'}>Want to read</h1>
+                <div className={'flex gap-4 flex-wrap justify-around items-center'}>
+                    {
+                        wantsToRead.length ?
+                            wantsToRead.map(book => (
+                                <BookCard id={book.id} key={book.id} book={book} />
+                            )) :
+                            <p className={'text-black/40 text-2xl'}>Nothing</p>
+                    }
+                </div>
+            </div>
+
+            <div className={'currently-reading pt-8'}>
+                <h1 className={'text-2xl border-b-2 mb-2'}>Read</h1>
+                <div className={'flex gap-4 flex-wrap justify-around items-center'}>
+                    {
+                        read.length ?
+                            read.map(book => (
+                                <BookCard id={book.id} key={book.id} book={book} />
+                            )) :
+                            <p className={'text-black/40 text-2xl'}>Nothing</p>
+                    }
+                </div>
+            </div>
+            <Plus />
         </div>
     );
 };

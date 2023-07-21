@@ -1,40 +1,24 @@
-import React from 'react'
-import { useNavigate } from "react-router-dom";
+import { IoMdArrowDropdown } from 'react-icons/io'
+import { useState } from "react";
+import Dropdown from "./Dropdown.jsx";
 
 const BookCard = ({ book }) => {
-    const { title, image, rating } = book;
-    const navigate = useNavigate();
-    function changeCategory(e, id) {
-        setAllBooks(book.map((book) =>
-            book.id === id ? { ...book, category: e.target.value } : book
-        ))
-    }
-
+    const [isDropdown, setIsDropdown] = useState(false)
+    const { image, title, writer } = book;
     return (
-        <div className="book shadow-md rounded p-10">
-            <img
-                src={image}
-                alt=""
-                className="h-[200px] w-[200px]"
-            />
-            <h1>Title: {title}</h1>
-            <h1>writer: {writer}</h1>
-            <h1>rating: {rating}</h1>
+        <div className={'book w-44 shadow-lg p-1 relative select-none'}>
+            <div className={'relative'}>
+                <img src={image} alt="image" className={'w-full aspect-square'} />
+                <div className={'absolute -bottom-6 right-0 text-3xl bg-orange-600 rounded-full p-1 cursor-pointer text-white'}>
+                    <IoMdArrowDropdown onClick={() => setIsDropdown(prevState => !prevState)} />
+                    <Dropdown curBook={book} isDropdown={isDropdown} setIsDropdown={setIsDropdown} />
+                </div>
+            </div>
+            <p className={'line-clamp-1 mt-4 font-bold'}>{title}</p>
+            <p className={'line-clamp-1 text-black/50'}>{writer}</p>
 
-            <select
-                onChange={(e) => changeCategory(e, book.id)}
-                name=""
-                id=""
-                className="border-2"
-            >
-                <option disabled='true' value=" ">Move To</option>
-                <option value="reading">curently reading</option>
-                <option value="wantsToRead">want to read</option>
-                <option value="read">Read</option>
-                <option value="none">none </option>
-            </select>
         </div>
-    )
-}
+    );
+};
 
-export default BookCard
+export default BookCard;

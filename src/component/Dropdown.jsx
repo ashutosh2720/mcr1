@@ -1,0 +1,37 @@
+import React from 'react';
+import { BsCheck } from 'react-icons/bs'
+import { useGlobalBooks } from "../context/bookContext.jsx";
+
+const Dropdown = ({ isDropdown, setIsDropdown, curBook }) => {
+    const { books, setBooks } = useGlobalBooks()
+
+    const changeCategory = (category) => {
+        setBooks(books.map(book => book.id === curBook.id ? { ...book, category: category } : book))
+        setIsDropdown(false)
+    }
+
+    return (
+        <div id="dropdown"
+            className={`z-10 ${isDropdown ? 'block' : 'hidden'} absolute divide-gray-100 rounded-lg shadow w-30 bg-gray-200 top-10 -left-32`}>
+            <ul className="py-2 text-sm text-black">
+                <li className="block px-1 py-2 bg-black/10 text-black/40 select-none">
+                    Move to...
+                </li>
+                <li className="flex items-center gap-2 px-2 py-2 cursor-pointer hover:bg-orange-600 hover:text-white text-black" onClick={() => changeCategory('reading')}>
+                    {curBook.category === 'reading' && <BsCheck className={`text-xl`} />}Currently reading
+                </li>
+                <li className="flex items-center gap-2 px-4 py-2 cursor-pointer hover:bg-orange-600 hover:text-white text-black" onClick={() => changeCategory('wantsToRead')}>
+                    {curBook.category === 'wantsToRead' && <BsCheck className={`text-xl`} />} Want to read
+                </li>
+                <li className="flex items-center gap-2 px-4 py-2 cursor-pointer hover:bg-orange-600 hover:text-white text-black" onClick={() => changeCategory('read')}>
+                    {curBook.category === 'read' && <BsCheck className={`text-xl`} />} Read
+                </li>
+                <li className="flex items-center gap-2 px-4 py-2 cursor-pointer hover:bg-orange-600 hover:text-white text-black" onClick={() => changeCategory('none')}>
+                    {curBook.category === 'none' && <BsCheck className={`text-xl`} />} None
+                </li>
+            </ul>
+        </div>
+    );
+};
+
+export default Dropdown;

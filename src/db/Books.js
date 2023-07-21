@@ -1,6 +1,6 @@
 import { v4 as uuid } from 'uuid';
 
-export const books = [
+export const allBooks = [
     {
         id: uuid(),
         image: "https://m.media-amazon.com/images/I/51-nXsSRfZL._SX328_BO1,204,203,200_.jpg",
