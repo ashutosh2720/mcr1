@@ -17,6 +17,7 @@ const Search = () => {
 
     return (
         <div className={'search'}>
+            <h1 className="text-start bg-cyan-700 inline text-3xl text-white p-2 cursor-pointer" onClick={() => navigate('/')} >back to home </h1>
             <div className="input flex items-center justify-center gap-4 m-4 border-b-2 mx-8 shadow-lg">
                 <div className="back-icon flex-1 pl-4 text-3xl cursor-pointer text-black/60"
                     onClick={() => navigate('/')}>
